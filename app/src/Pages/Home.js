@@ -7,10 +7,15 @@
  */
 
 import React, { Fragment } from 'react';
-import { Text, View, StyleSheet, ImageBackground, ScrollView } from 'react-native';
-import CategorieCard from './Components/CategorieCard'
+import { Text, View, StyleSheet, ImageBackground, ScrollView, Dimensions } from 'react-native';
+import CategoryCard from '../Components/CategoryCard'
+import CategoriesList from '../Components/CategoriesList'
 // import { Card } from 'react-native-elements';
 // import Icon from 'react-native-vector-icons/FontAwesome';
+
+import Carousel from 'react-native-snap-carousel';
+
+
 const categories = [
   {
     name: 'Palestras',
@@ -39,6 +44,11 @@ const categories = [
 ]
 export default class Home extends React.Component {
 
+  _renderItem ({item, index}) {
+    return (
+      <CategoryCard category={item} />
+    );
+}
 
   render() {
     return (
@@ -46,19 +56,21 @@ export default class Home extends React.Component {
 
         <ScrollView>
 
-        <View>
+          <View>
             <Text style={styles.categoriesText}>
               Eventos em destaque
             </Text>
+            <Carousel
+              ref={(c) => { this._carousel = c; }}
+              data={categories}
+              renderItem={this._renderItem}
+              sliderWidth={Dimensions.get('screen').width}
+              itemWidth={Dimensions.get('screen').width}
+            />
           </View>
 
-          <View>
-            <Text style={styles.categoriesText}>
-              Categorias
-            </Text>
-          </View>
 
-          {categories.map((categorie) => <CategorieCard name={categorie.name} imageUrl={categorie.image} />)}
+          <CategoriesList categories={categories}/>
 
         </ScrollView>
 
