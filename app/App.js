@@ -14,7 +14,8 @@ import Navbar from './src/Components/Navbar'
 
 import Initial from './src/Pages/Initial'
 import Home from './src/Pages/Home'
-import EventList from './src/Pages/EventList'
+import EventsList from './src/Pages/EventsList'
+import EventInfo from './src/Pages/EventInfo'
 
 const App = () => {
   console.disableYellowBox = true;
@@ -23,7 +24,8 @@ const App = () => {
       <Stack key="root"  navBar={Navbar} >
         <Scene key="initial" component={Initial} initial hideNavBar />
         <Scene key="home" component={Home} />
-        <Scene key="eventList" component={EventList} />
+        <Scene key="eventsList" component={EventsList} />
+        <Scene key="eventInfo" component={EventInfo} />
       </Stack>
     </Router>
   );

@@ -26,12 +26,12 @@ const Initial = () => {
         <Text style={styles.or}>Ou</Text>
       </View>
       <View>
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight style={styles.button} onPress={() => Actions.register()}>
           <Text style={styles.buttonText}>  Criar uma conta</Text>
         </TouchableHighlight>
-        
-        <TouchableHighlight >
-          <Text> Já é cadastrado? clique aqui</Text>
+
+        <TouchableHighlight onPress={() => Actions.login()}>
+          <Text style={{ color: '#FFFFFF', textAlign: 'center', marginTop: 10 }}> Já é cadastrado? clique aqui</Text>
         </TouchableHighlight>
       </View>
 
@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 25,
     color: '#FFFFFF',
   },
   or: {
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 20,
     color: '#FFFFFF',
     marginTop: 20,
     marginBottom: 20
