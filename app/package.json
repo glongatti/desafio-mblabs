@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
+    "test": "jest"
   },
   "dependencies": {
     "babel-preset-react-native": "^2.1.0",
@@ -22,9 +21,13 @@
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/runtime": "^7.6.0",
-    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-eslint": "^8.1.2",
     "babel-jest": "^24.9.0",
-    "eslint": "^6.4.0",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
     "react-test-renderer": "16.8.6"

@@ -1,4 +1,3 @@
-
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -8,35 +7,10 @@
  */
 
 import React, { Fragment } from 'react';
-import { Text, View, ImageBackground, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 
-import EventCard from '../Components/EventCard'
-import { MOCK_EVENTS } from './../utils'
-
-
-const EventsList = ({ category = { name: 'Teste' } }) => {
-
-  return (
-    <>
-      <View>
-        <Text style={styles.eventListTitle}>
-          Listando: {category.name}
-        </Text>
-      </View>
-
-      <View style={styles.eventsList}>
-        {MOCK_EVENTS.map((event, index) => {
-          return (
-            <EventCard event={event} />
-          )
-        })}
-      </View>
-
-    </>
-  );
-};
-
-
+import EventCard from '../Components/EventCard';
+import MOCK_EVENTS from './../utils';
 
 const styles = StyleSheet.create({
   eventListTitle: {
@@ -47,16 +21,28 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 30
+    marginTop: 30,
   },
   eventsList: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
+});
 
-})
+const EventsList = ({ category = { name: 'Teste' } }) => (
+  <Fragment>
+    <View>
+      <Text style={styles.eventListTitle}>Listando: {category.name}</Text>
+    </View>
 
+    <View style={styles.eventsList}>
+      {MOCK_EVENTS.map(event => (
+        <EventCard event={event} />
+      ))}
+    </View>
+  </Fragment>
+);
 
 export default EventsList;

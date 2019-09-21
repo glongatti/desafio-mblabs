@@ -1,4 +1,4 @@
-
+/* eslint-disable react/prop-types */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -8,25 +8,8 @@
  */
 
 import React, { Fragment } from 'react';
-import { Text, View, ImageBackground, StyleSheet } from 'react-native';
-import CategoryCard from './CategoryCard'
-
-const CategoriesList = ({ categories }) => {
-
-  return (
-    <>
-      <View>
-        <Text style={styles.categoriesText}>
-          Categorias
-      </Text>
-      </View>
-
-      {categories.map((category) => <CategoryCard category={category} />)}
-    </>
-  );
-};
-
-
+import { Text, View, StyleSheet } from 'react-native';
+import CategoryCard from './CategoryCard';
 
 const styles = StyleSheet.create({
   categoriesText: {
@@ -36,10 +19,19 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     marginBottom: 20,
     marginLeft: 20,
-    marginRight: 20
+    marginRight: 20,
   },
+});
+const CategoriesList = ({ categories }) => (
+  <Fragment>
+    <View>
+      <Text style={styles.categoriesText}>Categorias</Text>
+    </View>
 
-})
-
+    {categories.map(category => (
+      <CategoryCard category={category} />
+    ))}
+  </Fragment>
+);
 
 export default CategoriesList;

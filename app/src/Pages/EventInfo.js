@@ -1,88 +1,17 @@
+/* eslint-disable react/no-did-mount-set-state */
 import React, { Component } from 'react';
-import { Container, Header, Title, Button, Left, Right, Body, Accordion, Card, CardItem } from 'native-base';
-import { Text, View, ImageBackground, StyleSheet, ScrollView } from 'react-native';
-import { MOCK_EVENTS } from './../utils'
+import { Button, Left, Right, Body, Card, CardItem } from 'native-base';
+import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
-import moment from 'moment'
+import moment from 'moment';
+import { Actions } from 'react-native-router-flux';
 
-export default class EventInfo extends Component {
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-
-        <View>
-          <Text style={styles.eventListTitle}>
-            {MOCK_EVENTS[0].name}
-          </Text>
-        </View>
-
-        <View>
-          <Text style={styles.eventDescriptionTitle}>
-            Descrição do Evento
-          </Text>
-          <Text style={styles.eventDescription}>
-            {MOCK_EVENTS[0].description}
-          </Text>
-        </View>
-
-        <View>
-          <Text style={styles.eventDescriptionTitle}>
-            Informações importantes
-          </Text>
-
-          <View style={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-          }}>
-            <Text> <FaIcon name="calendar" size={17} style={{ position: 'relative', top: 123 }} />{moment(MOCK_EVENTS[0].date).format('DD/MM/YYYY')} </Text>
-            <Text><FaIcon name="clock-o" size={17} style={styles.icon} />{moment(MOCK_EVENTS[0].date).format('HH:mm')}</Text>
-          </View>
-
-          <Text>Faixa etária: 18 Anos</Text>
-
-          <Text>Endereço: {MOCK_EVENTS[0].address}</Text>
-        </View>
-
-
-        <View style={{ marginBottom: 40 }}>
-          <Card>
-            <CardItem header>
-              <Text style={{ fontWeight: 'bold', fontSize: 25 }}>Ingressos</Text>
-            </CardItem>
-            <CardItem>
-              <Body>
-                <Text>Por favor, selecione os ingressos para continuar com a compra</Text>
-                {MOCK_EVENTS[0].tickets.map((ticket, index) => {
-                  return (
-                    <View>
-                      <Text>{ticket.name}</Text>
-                      <Button>
-                        <Icon name='arrow-forward' />
-                      </Button>
-                    </View>
-                  )
-                })}
-              </Body>
-            </CardItem>
-            <CardItem footer>
-              <Button block info style={{ width: '100%' }} >
-                <Text>Comprar ingressos</Text>
-              </Button>
-            </CardItem>
-          </Card>
-        </View>
-
-      </ScrollView>
-
-    );
-  }
-}
+import MOCK_EVENTS from './../utils';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15
+    padding: 15,
   },
   eventListTitle: {
     fontSize: 30,
@@ -91,25 +20,144 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 10
+    marginTop: 10,
+    textAlign: 'center',
   },
   eventsList: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   eventDescriptionTitle: {
     fontSize: 23,
+    color: '#3f51b5',
     marginLeft: 5,
-    marginBottom: 15
+    marginBottom: 15,
   },
   eventDescription: {
-    padding: 5
+    padding: 5,
   },
   icon: {
-    position: 'absolute',
-    left: 155
+    color: '#3f51b5',
+  },
+});
+
+export default class EventInfo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tickets: [],
+    };
+  }
+  componentDidMount() {
+    const eventTickets = MOCK_EVENTS[0].tickets.map(ticket => ({ ...ticket, amount: 0 }));
+
+    this.setState({
+      tickets: eventTickets,
+    });
   }
 
-})
+  toggleTickets = (action, index) => {
+    const newTickets = this.state.tickets;
+
+    if (action === 'add') {
+      newTickets[index].amount += 1;
+    } else {
+      newTickets[index].amount -= 1;
+    }
+    this.setState({
+      tickets: newTickets,
+    });
+  };
+
+  renderTicketArea = () => (
+    <View style={{ marginBottom: 50, marginTop: 20 }}>
+      <Card>
+        <CardItem header bordered>
+          <Body>
+            <Text
+              style={{
+                fontSize: 23,
+                color: '#3f51b5',
+              }}
+            >
+              Ingressos
+            </Text>
+          </Body>
+        </CardItem>
+        {this.state.tickets &&
+          MOCK_EVENTS[0].tickets.map((ticket, index) => (
+            <CardItem key={ticket.id}>
+              <Left>
+                <Text>{ticket.name}</Text>
+              </Left>
+              <Body>
+                <Text> R${ticket.cost}</Text>
+              </Body>
+              <Right style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+                <TouchableHighlight onPress={() => this.toggleTickets('remove', index)}>
+                  <FaIcon name="minus" size={15} color="red" />
+                </TouchableHighlight>
+                {this.state.tickets && this.state.tickets[index] && (
+                  <Text>{this.state.tickets[index].amount} </Text>
+                )}
+                <TouchableHighlight onPress={() => this.toggleTickets('add', index)}>
+                  <FaIcon name="plus" size={15} color="green" />
+                </TouchableHighlight>
+              </Right>
+            </CardItem>
+          ))}
+        <CardItem footer>
+          <Button
+            block
+            warning
+            iconLeft
+            onPress={() => Actions.eventInfo()}
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          >
+            <Text>Comprar ingressos</Text>
+          </Button>
+        </CardItem>
+      </Card>
+    </View>
+  );
+  render() {
+    return (
+      <ScrollView style={styles.container}>
+        <View>
+          <Text style={styles.eventListTitle}>{MOCK_EVENTS[0].name}</Text>
+        </View>
+
+        <View>
+          <Text style={styles.eventDescriptionTitle}>Descrição do Evento</Text>
+          <Text style={styles.eventDescription}>{MOCK_EVENTS[0].description}</Text>
+        </View>
+
+        <View>
+          <Text style={styles.eventDescriptionTitle}>Informações importantes</Text>
+
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+            <Text>
+              <FaIcon name="calendar" size={17} style={styles.icon} />{' '}
+              {moment(MOCK_EVENTS[0].date).format('DD/MM/YYYY')}{' '}
+            </Text>
+            <Text>
+              <FaIcon name="clock-o" size={17} style={styles.icon} />{' '}
+              {moment(MOCK_EVENTS[0].date).format('HH:mm')}
+            </Text>
+          </View>
+
+          <Text style={{ textAlign: 'center', marginTop: 5 }}>Faixa etária: 18 Anos</Text>
+
+          <Text style={{ textAlign: 'center' }}>
+            <Icon name="location-on" size={17} style={styles.icon} />
+            {MOCK_EVENTS[0].address}
+          </Text>
+        </View>
+
+        {this.renderTicketArea()}
+      </ScrollView>
+    );
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -6,13 +7,11 @@
  * @flow
  */
 
-import React, { Fragment } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Form, Item, Input, Label, Button, DatePicker } from 'native-base';
+import React from 'react';
+import { Text } from 'react-native';
+import { Container, Content, Form, Item, Input, Label, Button, DatePicker } from 'native-base';
 
 class Register extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = { chosenDate: new Date() };
@@ -21,18 +20,21 @@ class Register extends React.Component {
   setDate(newDate) {
     this.setState({ chosenDate: newDate });
   }
-  ren
 
   render() {
     return (
       <Container>
         <Content>
-          <Text style={{
-            textAlign: 'center',
-            fontSize: 30,
-            marginTop: 20,
-            marginBottom: 40
-          }}>Cadastro de usuário</Text>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 30,
+              marginTop: 20,
+              marginBottom: 40,
+            }}
+          >
+            Cadastro de usuário
+          </Text>
           <Form>
             <Item stackedLabel underline>
               <Label>Nome</Label>
@@ -60,35 +62,27 @@ class Register extends React.Component {
                 defaultDate={new Date(2018, 4, 4)}
                 minimumDate={new Date(2018, 1, 1)}
                 maximumDate={new Date(2018, 12, 31)}
-                locale={"br"}
+                locale="br"
                 timeZoneOffsetInMinutes={undefined}
                 modalTransparent={false}
-                animationType={"fade"}
-                androidMode={"default"}
+                animationType="fade"
+                androidMode="default"
                 placeHolderText="Selecione a data"
-                textStyle={{ color: "green" }}
-                placeHolderTextStyle={{ color: "#d3d3d3" }}
+                textStyle={{ color: 'green' }}
+                placeHolderTextStyle={{ color: '#d3d3d3' }}
                 onDateChange={this.setDate}
                 disabled={false}
               />
             </Item>
-
           </Form>
 
           <Button block style={{ margin: 20 }}>
             <Text style={{ color: '#FFFFFF' }}>Cadastrar</Text>
           </Button>
         </Content>
-      </Container >
+      </Container>
     );
   }
-
 }
 
-const styles = StyleSheet.create({
-
-
-})
-
 export default Register;
-

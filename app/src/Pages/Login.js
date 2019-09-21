@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-stateless-function */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -6,24 +7,25 @@
  * @flow
  */
 
-import React, { Fragment } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { Actions } from 'react-native-router-flux'
-import { Container, Header, Content, Form, Item, Input, Label, Button } from 'native-base';
+import React from 'react';
+import { Text } from 'react-native';
+import { Container, Content, Form, Item, Input, Label, Button, Toast } from 'native-base';
 
 class Login extends React.Component {
-
-
   render() {
     return (
       <Container>
         <Content>
-          <Text style={{
-            textAlign: 'center',
-            fontSize: 30,
-            marginTop: 20,
-            marginBottom: 40
-          }}>Utilize sua conta para fazer login!</Text>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 30,
+              marginTop: 20,
+              marginBottom: 40,
+            }}
+          >
+            Utilize sua conta para fazer login!
+          </Text>
           <Form>
             <Item stackedLabel underline>
               <Label>Username</Label>
@@ -35,20 +37,22 @@ class Login extends React.Component {
             </Item>
           </Form>
 
-          <Button block style={{ margin: 20 }}>
+          <Button
+            block
+            style={{ margin: 20 }}
+            onPress={() =>
+              Toast.show({
+                text: 'Wrong password!',
+                buttonText: 'Okay',
+              })
+            }
+          >
             <Text style={{ color: '#FFFFFF' }}>Fazer Login!</Text>
           </Button>
         </Content>
-      </Container >
+      </Container>
     );
   }
-
 }
 
-const styles = StyleSheet.create({
-
-
-})
-
 export default Login;
-
