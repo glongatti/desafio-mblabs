@@ -7,7 +7,8 @@
  */
 
 import React, { Fragment } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+
+import { View, StyleSheet } from 'react-native';
 import { Router, Stack, Scene } from 'react-native-router-flux'
 
 import Navbar from './src/Components/Navbar'
@@ -16,13 +17,17 @@ import Initial from './src/Pages/Initial'
 import Home from './src/Pages/Home'
 import EventsList from './src/Pages/EventsList'
 import EventInfo from './src/Pages/EventInfo'
+import Login from './src/Pages/Login'
+import Register from './src/Pages/Register'
 
 const App = () => {
   console.disableYellowBox = true;
   return (
     <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle}>
-      <Stack key="root"  navBar={Navbar} >
-        <Scene key="initial" component={Initial} initial hideNavBar />
+      <Stack key="root" navBar={Navbar} >
+        <Scene key="initial" initial component={Initial} hideNavBar />
+        <Scene key="login" component={Login} />
+        <Scene key="register" component={Register} />
         <Scene key="home" component={Home} />
         <Scene key="eventsList" component={EventsList} />
         <Scene key="eventInfo" component={EventInfo} />

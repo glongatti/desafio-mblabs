@@ -13,7 +13,7 @@ import { Actions } from 'react-native-router-flux'
 const CategoryCard = ({ category }) => {
 
   function handleRedirect(category) {
-    Actions.eventList({ category })
+    Actions.eventsList({ category })
   }
 
   return (
