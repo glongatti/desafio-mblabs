@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
   },
   eventsList: {
     flex: 1,
-    // backgroundColor: '#2e2b56',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center'

@@ -7,8 +7,8 @@
  */
 
 import React, { Fragment } from 'react';
-import { View, ImageBackground, StyleSheet, TouchableHighlight } from 'react-native';
-import { Container, Header, Content, Button, Text } from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Container, Header, Content, Button, Text, Card, CardItem, Body, Right, Left } from 'native-base';
 
 import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -20,22 +20,30 @@ const EventCard = ({ event }) => {
 
 
   return (
-    <View style={styles.cardContainer} >
-      <View>
-        <Text style={styles.eventTitle}>{event.name}</Text>
-      </View>
-      <View style={styles.dateInfoContainer}>
-        <Text> <FaIcon name="calendar" size={17} style={styles.icon} />{moment(event.date).format('DD/MM/YYYY')}</Text>
-        <Text><FaIcon name="clock-o" size={17} style={styles.icon} />{moment(event.date).format('HH:mm')}</Text>
-      </View>
-      <View style={styles.addressContainer}>
-        <Text><Icon name="location-on" size={17} style={styles.icon} />{event.address}</Text>
-      </View>
-
-      <Button block info onPress={() => Actions.eventInfo()} >
-        <Text >Mais Informações</Text>
-      </Button>
-    </View>
+    <Card style={{ width: '90%', backgroundColor: '#DCDCDC', }}>
+      <CardItem header bordered>
+        <Body style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ textAlign: 'center' }}>{event.name}</Text>
+        </Body>
+      </CardItem >
+      <CardItem>
+        <Body style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+          <Text><FaIcon name="calendar" size={17} style={styles.icon} /> {moment(event.date).format('DD/MM/YYYY')}</Text>
+          <Text><FaIcon name="clock-o" size={17} style={styles.icon} /> {moment(event.date).format('HH:mm')}</Text>
+        </Body>
+      </CardItem>
+      <CardItem>
+        <Body style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+          <Text><Icon name="location-on" size={17} style={styles.icon} />{event.address}</Text>
+        </Body>
+      </CardItem>
+      <CardItem footer>
+        <Button block info iconLeft onPress={() => Actions.eventInfo()} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <FaIcon name="plus" size={18} color={'#ffffff'} />
+          <Text>Mais Informações</Text>
+        </Button>
+      </CardItem>
+    </Card >
   );
 };
 
@@ -64,7 +72,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    textAlign: 'center'
+    // textAlign: 'center',
+    backgroundColor: 'red'
   },
   addressContainer: {
     marginTop: 5,
