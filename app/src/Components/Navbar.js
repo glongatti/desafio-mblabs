@@ -1,48 +1,36 @@
+import React, { Component } from 'react';
+import { Container, Header, Title, Button, Left, Right, Body } from 'native-base';
+import { Actions } from 'react-native-router-flux'
 
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, { Fragment } from 'react';
-import { Text, View, ImageBackground, StyleSheet } from 'react-native';
-
-const Navbar = () => {
-
-  return (
-    <>
-      <View style={styles.navbarContainer}>
-        <Text style={styles.categoriesText}>
-          M.B. Events
-      </Text>
-      </View>
-    </>
-  );
-};
+import Icon from 'react-native-vector-icons/AntDesign';
+import Menu from 'react-native-vector-icons/Entypo';
 
 
+export default class Navbar extends Component {
+  render() {
+    return (
 
-const styles = StyleSheet.create({
-  categoriesText: {
-    fontSize: 30,
-    borderBottomColor: '#2089dc',
-    borderBottomWidth: 2,
-    paddingBottom: 5,
-    marginBottom: 20,
-    marginLeft: 20,
-    marginRight: 20,
-    textAlign:'center'
+      <Header>
+        <Left>
+          {Actions.currentScene !== 'home' ? (
+            <Button transparent onPress={() => Actions.pop()}>
+              <Icon name='left' size={25} color={"#ffffff"} />
+            </Button>
+          )
+            :
+            (
+              <Button transparent onPress={() => Actions.pop()}>
+                <Menu name='menu' size={25} color={"#ffffff"} />
+              </Button>
+            )
+          }
+        </Left>
+        <Body>
+          <Title>M.B. Events</Title>
+        </Body>
+        <Right />
+      </Header>
 
-  },
-  navbarContainer: {
-    backgroundColor: '#e5f9f5',
-    textAlign:'center'
+    );
   }
-
-})
-
-
-export default Navbar;
+}
