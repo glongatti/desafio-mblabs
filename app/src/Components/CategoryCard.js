@@ -34,7 +34,7 @@ const CategoryCard = ({ category }) => {
   }
 
   return (
-    <TouchableHighlight onPress={() => handleRedirect(category)}>
+    <TouchableHighlight onPress={() => handleRedirect(category)} key={category.id}>
       <ImageBackground style={styles.backgroundImage} source={{ uri: category.image }}>
         <Text style={styles.cardText}>{category.name}</Text>
       </ImageBackground>

@@ -71,6 +71,7 @@ export default class Home extends React.Component {
           justifyContent: 'center',
           alignItems: 'center',
         }}
+        key={item.id}
       >
         <EventCard event={item} />
       </View>

@@ -29,7 +29,7 @@ const CategoriesList = ({ categories }) => (
     </View>
 
     {categories.map(category => (
-      <CategoryCard category={category} />
+      <CategoryCard key={category.id} category={category} />
     ))}
   </Fragment>
 );
