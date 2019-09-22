@@ -6,22 +6,22 @@ export const appConfig = {
 export const MOCK_EVENTS = [
   {
     id: 1,
-    name: 'Evento 01',
+    name: 'Dialog Flow',
     description:
-      "'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae tincidunt dolor. Nam hendrerit neque in accumsan bibendum. Integer enim eros, bibendum eget aliquam et, vestibulum nec urna. Proin luctus tristique odio, non auctor velit rhoncus at. Suspendisse interdum metus sit amet turpis volutpat pretium. Sed scelerisque mollis ultricies. Proin sodales cursus bibendum. Aliquam non dignissim erat, vel fringilla lectus.    Nulla pulvinar, leo ac ullamcorper suscipit, ipsum risus ultrices ligula, id scelerisque lectus tortor sit amet ex. Phasellus mollis faucibus leo, in venenatis lacus laoreet et. Pellentesque sagittis vel mi quis cursus. Maecenas ut nulla vitae justo suscipit egestas. Vestibulum faucibus mauris eget aliquam sagittis. Ut et justo eros. Nullam tortor tortor, mattis sit amet interdum vitae, congue id nisi. Nullam leo dolor, placerat a eros sed, ullamcorper viverra lacus. Donec non ornare ligula. Nullam vitae molestie ex. Fusce ultrices volutpat lectus in placerat. Nunc non posuere felis. Praesent molestie mi a dui interdum, in porta augue tristique. Donec eu ex vel lorem vehicula vulputate vulputate in ante. Aenean at justo semper, sollicitudin mauris in, laoreet turpis.'",
-    age: '+18',
+      'Nesse workshop Neto Silva, o líder de Chatbot do PJBank. nos ensinará como criar uma aplicação utilizando o Dialog Flow do Google. O conteúdo abordado será a apresentação do DialogFlow e criar uma aplicação prática usando a própria IDE do serviço; Pre-requisito:      - Por se tratar de um workshop é necessário levar seu computador, sob sua responsabilidade.',
+    age: 'Livre para todos os públicos',
     date: new Date(),
-    address: 'Av. antonio fred ozanan 9500',
+    address: 'R. da Abolição, 881 · Campinas',
     tickets: [
       {
         id: 1,
-        name: 'Ingresso 01',
+        name: 'Ingresso Simples',
         description: 'Ingresso que permite todas as palestras',
         cost: 55.5,
       },
       {
         id: 2,
-        name: 'Ingresso 02',
+        name: 'Ingresso VIP',
         description: 'Ingresso que permite todas as palestras e tem acesso ao network',
         cost: 150,
       },
@@ -29,24 +29,58 @@ export const MOCK_EVENTS = [
   },
   {
     id: 2,
-    name: 'Evento 02',
+    name: 'Virtual Product Summit: The Online Product Management Conference',
     description:
-      'Evento foda meusduesaud asudsaudas asjdnasiudasduas asiudhasuidhasuid saiojdaiojsdijasi asiodjasi',
-    age: '+18',
+      'On October 24, we will be presenting the first Virtual Product Summit, a Product School online conference dedicated to Product Management. Featuring six of the most prominent product minds from companies like Tinder, Amazon, and Airbnb, each talk will focus on the most trending insights in the product world.      This four-hour long conference will be available for livestream on Youtube, Facebook, and LinkedIn. To ensure that you don’t miss out on any of this valuable information, all slides will be available for download during the talks. Join us as we bring together the biggest online product community in the world to learn from those who are leading the charge in the industry.',
+    age: '+16',
     date: new Date(),
-    address: 'Av. antonio fred ozanan 9500',
+    address: 'Online',
     tickets: [
       {
         id: 1,
-        name: 'Ingresso 01',
+        name: 'Inscrição',
+        description: 'Ingresso que permite todas as palestras',
+        cost: 55.5,
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: '#14 Agile Beer Campinas',
+    description:
+      'Essa edição será realizada na Programmers, que fica na Av. John Dalton, 301 - Edifício 3, conjunto 13A (Techno Park Campinas). Vamos compartilhar experiências e conhecimento sobre os métodos ágeis, expandir nosso network e ainda tomar uma cerveja juntos.',
+    age: '+16',
+    date: new Date(),
+    address: 'Campinas',
+    tickets: [
+      {
+        id: 1,
+        name: 'Ingresso gratuito',
+        description: 'Ingresso que permite todas as palestras',
+        cost: 55.5,
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: '31º CocoaTalks Campinas',
+    description:
+      'Essa edição será realizada na Programmers, que fica na Av. John Dalton, 301 - Edifício 3, conjunto 13A (Techno Park Campinas). Vamos compartilhar experiências e conhecimento sobre os métodos ágeis, expandir nosso network e ainda tomar uma cerveja juntos.',
+    age: '+16',
+    date: new Date(),
+    address: 'Zup IT Campinas - Av. José Rocha Bomfim, 214 · Campinas',
+    tickets: [
+      {
+        id: 1,
+        name: 'Ingresso simples',
         description: 'Ingresso que permite todas as palestras',
         cost: 55.5,
       },
       {
         id: 2,
-        name: 'Ingresso 02',
-        description: 'Ingresso que permite todas as palestras e tem acesso ao network',
-        cost: 150,
+        name: 'Ingresso Premium',
+        description: 'Ingresso que permite todas as palestras',
+        cost: 85.5,
       },
     ],
   },
@@ -56,8 +90,7 @@ export const categories = [
   {
     id: 1,
     name: 'Palestras',
-    image:
-      'https://dpz4c7q921os3.cloudfront.net/images/block/84a413f825f71f57b8f3a048179ebb20aa3730d3.jpeg',
+    image: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/185/2017/01/badge-speech-1.png',
   },
   {
     id: 2,
@@ -66,27 +99,20 @@ export const categories = [
       'https://dpz4c7q921os3.cloudfront.net/images/block/d8d0045a1d081d1b4c9f336ec08ab71ee2ff10fb.jpeg',
   },
   {
-    id: 3,
-    name: 'Eventos',
-    image:
-      'https://dpz4c7q921os3.cloudfront.net/images/block/4e22355731786660ea9f915e1233a7df462ddce0.png',
-  },
-  {
     id: 4,
     name: 'Meetups',
-    image:
-      'https://dpz4c7q921os3.cloudfront.net/images/block/68531ffc3d5ebde5a4dabe9b6dc9b19b8c746e61.jpeg',
+    image: 'https://www.themartec.com/insidelook/wp-content/uploads/Meetups-Sydney-Startups.jpg',
   },
   {
     id: 5,
     name: 'Eventos online',
     image:
-      'https://dpz4c7q921os3.cloudfront.net/images/block/685f2b10a85cdfd7f5e82b38ca734cbaa0cfb125.png',
+      'https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1463513356000/photosp/c5bce4d3-eb5d-4d6d-b9ce-71117b066187/stock-photo-business-technology-laptop-electronic-computer-corporate-editing-tutoring-users-c5bce4d3-eb5d-4d6d-b9ce-71117b066187.jpg',
   },
-  {
-    id: 6,
-    name: 'Show de talentos',
-    image:
-      'https://dpz4c7q921os3.cloudfront.net/images/block/52e9dff900383507c59075c88c46ed98249e866c.png',
-  },
+  // {
+  //   id: 6,
+  //   name: 'Show de talentos',
+  //   image:
+  //     'https://dpz4c7q921os3.cloudfront.net/images/block/52e9dff900383507c59075c88c46ed98249e866c.png',
+  // },
 ];
