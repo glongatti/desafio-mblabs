@@ -8,7 +8,7 @@ import moment from 'moment';
 // import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 
-import MOCK_EVENTS from './../utils';
+import { MOCK_EVENTS } from './../utils';
 
 const styles = StyleSheet.create({
   container: {

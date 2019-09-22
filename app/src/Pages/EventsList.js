@@ -8,9 +8,8 @@
 
 import React, { Fragment } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import EventCard from '../Components/EventCard';
-import MOCK_EVENTS from './../utils';
+import { MOCK_EVENTS } from './../utils';
 
 const styles = StyleSheet.create({
   eventListTitle: {
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const EventsList = ({ category = { name: 'Teste' } }) => (
+const EventsList = ({ category }) => (
   // <LinearGradient colors={['#ece9e6', '#ffffff']}>
   <Fragment>
     <View>
