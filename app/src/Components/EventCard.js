@@ -89,7 +89,7 @@ const EventCard = ({ event }) => (
         block
         info
         iconLeft
-        onPress={() => Actions.eventInfo()}
+        onPress={() => Actions.eventInfo({ event })}
         style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
       >
         <FaIcon name="plus" size={18} color="#ffffff" />

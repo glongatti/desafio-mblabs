@@ -8,10 +8,10 @@
 
 import React from 'react';
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Root } from 'native-base';
 
-import { Router, Stack, Scene } from 'react-native-router-flux';
+import { Router, Stack, Scene, Drawer } from 'react-native-router-flux';
 
 import Navbar from './src/Components/Navbar';
 
@@ -21,6 +21,7 @@ import EventsList from './src/Pages/EventsList';
 import EventInfo from './src/Pages/EventInfo';
 import Login from './src/Pages/Login';
 import Register from './src/Pages/Register';
+import Sidebar from './src/Components/Sidebar';
 
 const styles = StyleSheet.create({
   navBar: {
@@ -36,6 +37,8 @@ const styles = StyleSheet.create({
   },
 });
 
+const { width } = Dimensions.get('window');
+
 const App = () => {
   // eslint-disable-next-line no-console
   console.disableYellowBox = true;
@@ -43,10 +46,18 @@ const App = () => {
     <Root>
       <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle}>
         <Stack key="root" navBar={Navbar}>
-          <Scene key="initial" initial component={Initial} hideNavBar />
+          <Scene key="initial" component={Initial} hideNavBar />
           <Scene key="login" component={Login} />
           <Scene key="register" component={Register} />
-          <Scene key="home" component={Home} />
+          <Drawer
+            key="drawer"
+            contentComponent={Sidebar}
+            drawerWidth={width * 0.7}
+            drawer
+            hideNavBar
+          >
+            <Scene key="home" initial component={Home} />
+          </Drawer>
           <Scene key="eventsList" component={EventsList} />
           <Scene key="eventInfo" component={EventInfo} />
         </Stack>

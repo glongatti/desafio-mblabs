@@ -52,7 +52,7 @@ export default class EventInfo extends Component {
     };
   }
   componentDidMount() {
-    const eventTickets = MOCK_EVENTS[0].tickets.map(ticket => ({ ...ticket, amount: 0 }));
+    const eventTickets = this.props.event.tickets.map(ticket => ({ ...ticket, amount: 0 }));
 
     this.setState({
       tickets: eventTickets,
@@ -83,6 +83,71 @@ export default class EventInfo extends Component {
     else Toast.show({ text: 'Redirect' });
   };
 
+  renderEventInfoArea = () => (
+    <Card>
+      <CardItem header bordered>
+        <Body>
+          <Text
+            style={{
+              fontSize: 23,
+              color: '#3f51b5',
+            }}
+          >
+            {this.props.event.name}
+          </Text>
+        </Body>
+      </CardItem>
+      <CardItem bordered>
+        <Body>
+          <Text style={styles.eventDescriptionTitle}>Descrição do Evento</Text>
+          <Text style={styles.eventDescription}>{this.props.event.description}</Text>
+        </Body>
+      </CardItem>
+      <CardItem>
+        <Body>
+          <Text
+            style={{
+              fontSize: 23,
+              color: '#3f51b5',
+              marginLeft: 5,
+            }}
+          >
+            Informações importantes
+          </Text>
+        </Body>
+      </CardItem>
+      <CardItem>
+        <Body style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+          <Text>
+            <FaIcon name="calendar" size={17} style={styles.icon} />{' '}
+            {moment(this.props.event.date).format('DD/MM/YYYY')}{' '}
+          </Text>
+          <Text>
+            <FaIcon name="clock-o" size={17} style={styles.icon} />{' '}
+            {moment(this.props.event.date).format('HH:mm')}
+          </Text>
+        </Body>
+      </CardItem>
+      <CardItem>
+        <Body
+          style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+          }}
+        >
+          <Text style={{ textAlign: 'center' }}>
+            <Icon name="location-on" size={17} style={styles.icon} />
+            {this.props.event.address}
+          </Text>
+
+          <Text style={{ textAlign: 'center', marginTop: 5 }}>Faixa etária: 18 Anos</Text>
+        </Body>
+      </CardItem>
+    </Card>
+  );
+
   renderTicketArea = () => (
     <View style={{ marginBottom: 50, marginTop: 20 }}>
       <Card>
@@ -99,7 +164,7 @@ export default class EventInfo extends Component {
           </Body>
         </CardItem>
         {this.state.tickets &&
-          MOCK_EVENTS[0].tickets.map((ticket, index) => (
+          this.props.event.tickets.map((ticket, index) => (
             <CardItem key={ticket.id}>
               <Left>
                 <Text>{ticket.name}</Text>
@@ -138,37 +203,7 @@ export default class EventInfo extends Component {
     return (
       <LinearGradient colors={['#ece9e6', '#ffffff']}>
         <ScrollView style={styles.container}>
-          <View>
-            <Text style={styles.eventListTitle}>{MOCK_EVENTS[0].name}</Text>
-          </View>
-
-          <View>
-            <Text style={styles.eventDescriptionTitle}>Descrição do Evento</Text>
-            <Text style={styles.eventDescription}>{MOCK_EVENTS[0].description}</Text>
-          </View>
-
-          <View>
-            <Text style={styles.eventDescriptionTitle}>Informações importantes</Text>
-
-            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-              <Text>
-                <FaIcon name="calendar" size={17} style={styles.icon} />{' '}
-                {moment(MOCK_EVENTS[0].date).format('DD/MM/YYYY')}{' '}
-              </Text>
-              <Text>
-                <FaIcon name="clock-o" size={17} style={styles.icon} />{' '}
-                {moment(MOCK_EVENTS[0].date).format('HH:mm')}
-              </Text>
-            </View>
-
-            <Text style={{ textAlign: 'center', marginTop: 5 }}>Faixa etária: 18 Anos</Text>
-
-            <Text style={{ textAlign: 'center' }}>
-              <Icon name="location-on" size={17} style={styles.icon} />
-              {MOCK_EVENTS[0].address}
-            </Text>
-          </View>
-
+          {this.renderEventInfoArea()}
           {this.renderTicketArea()}
         </ScrollView>
       </LinearGradient>

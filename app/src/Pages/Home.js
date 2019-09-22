@@ -9,7 +9,6 @@
 
 import React from 'react';
 import { Text, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import { Spinner } from 'native-base';
 import Carousel from 'react-native-snap-carousel';
 import LinearGradient from 'react-native-linear-gradient';
 import axios from 'axios';
@@ -75,8 +74,12 @@ export default class Home extends React.Component {
           <ScrollView>
             <View>
               <Text style={styles.categoriesText}>Eventos em destaque</Text>
-
               <Carousel
+                loop
+                autoplay
+                autoplayDelay={1}
+                autoplayInterval={3000}
+                layout="default"
                 ref={(c) => {
                   this.carousel = c;
                 }}
