@@ -10,6 +10,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import LinearGradient from 'react-native-linear-gradient';
 import CategoriesList from '../Components/CategoriesList';
 import EventCard from '../Components/EventCard';
 
@@ -78,25 +79,27 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <View>
-        <ScrollView>
-          <View>
-            <Text style={styles.categoriesText}>Eventos em destaque</Text>
+      <LinearGradient colors={['#ece9e6', '#ffffff']}>
+        <View>
+          <ScrollView>
+            <View>
+              <Text style={styles.categoriesText}>Eventos em destaque</Text>
 
-            <Carousel
-              ref={(c) => {
-                this.carousel = c;
-              }}
-              data={MOCK_EVENTS}
-              renderItem={this.renderItem}
-              sliderWidth={Dimensions.get('screen').width}
-              itemWidth={Dimensions.get('screen').width}
-            />
-          </View>
+              <Carousel
+                ref={(c) => {
+                  this.carousel = c;
+                }}
+                data={MOCK_EVENTS}
+                renderItem={this.renderItem}
+                sliderWidth={Dimensions.get('screen').width}
+                itemWidth={Dimensions.get('screen').width}
+              />
+            </View>
 
-          <CategoriesList categories={categories} />
-        </ScrollView>
-      </View>
+            <CategoriesList categories={categories} />
+          </ScrollView>
+        </View>
+      </LinearGradient>
     );
   }
 }

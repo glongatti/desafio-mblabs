@@ -9,11 +9,11 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import LinearGradient from 'react-native-linear-gradient';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2e2b56',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 });
 
 const Initial = () => (
-  <View style={styles.container}>
+  <LinearGradient colors={['#0f0c29', '#302b63', '#24243e']} style={styles.container}>
     <View>
       <Text style={styles.title}>M.B. Events</Text>
     </View>
@@ -80,7 +80,7 @@ const Initial = () => (
         </Text>
       </TouchableHighlight>
     </View>
-  </View>
+  </LinearGradient>
 );
 
 export default Initial;

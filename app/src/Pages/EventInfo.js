@@ -1,11 +1,12 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React, { Component } from 'react';
-import { Button, Left, Right, Body, Card, CardItem } from 'native-base';
+import { Button, Left, Right, Body, Card, CardItem, Toast } from 'native-base';
 import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
+import LinearGradient from 'react-native-linear-gradient';
 
 import MOCK_EVENTS from './../utils';
 
@@ -63,12 +64,23 @@ export default class EventInfo extends Component {
 
     if (action === 'add') {
       newTickets[index].amount += 1;
-    } else {
-      newTickets[index].amount -= 1;
+    } else if (action === 'remove') {
+      if (newTickets[index].amount > 0) newTickets[index].amount -= 1;
+      else Toast.show({ text: 'Quantidade inválida' });
     }
     this.setState({
       tickets: newTickets,
     });
+  };
+
+  goToCart = () => {
+    let isEmpty = true;
+    this.state.tickets.forEach((ticket) => {
+      if (ticket.amount > 0) isEmpty = false;
+    });
+
+    if (isEmpty) Toast.show({ text: 'Selecione pelo menos 1 ingresso!' });
+    else Toast.show({ text: 'Redirect' });
   };
 
   renderTicketArea = () => (
@@ -113,7 +125,7 @@ export default class EventInfo extends Component {
             block
             warning
             iconLeft
-            onPress={() => Actions.eventInfo()}
+            onPress={() => this.goToCart()}
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
           >
             <Text>Comprar ingressos</Text>
@@ -124,40 +136,42 @@ export default class EventInfo extends Component {
   );
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <View>
-          <Text style={styles.eventListTitle}>{MOCK_EVENTS[0].name}</Text>
-        </View>
+      <LinearGradient colors={['#ece9e6', '#ffffff']}>
+        <ScrollView style={styles.container}>
+          <View>
+            <Text style={styles.eventListTitle}>{MOCK_EVENTS[0].name}</Text>
+          </View>
 
-        <View>
-          <Text style={styles.eventDescriptionTitle}>Descrição do Evento</Text>
-          <Text style={styles.eventDescription}>{MOCK_EVENTS[0].description}</Text>
-        </View>
+          <View>
+            <Text style={styles.eventDescriptionTitle}>Descrição do Evento</Text>
+            <Text style={styles.eventDescription}>{MOCK_EVENTS[0].description}</Text>
+          </View>
 
-        <View>
-          <Text style={styles.eventDescriptionTitle}>Informações importantes</Text>
+          <View>
+            <Text style={styles.eventDescriptionTitle}>Informações importantes</Text>
 
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-            <Text>
-              <FaIcon name="calendar" size={17} style={styles.icon} />{' '}
-              {moment(MOCK_EVENTS[0].date).format('DD/MM/YYYY')}{' '}
-            </Text>
-            <Text>
-              <FaIcon name="clock-o" size={17} style={styles.icon} />{' '}
-              {moment(MOCK_EVENTS[0].date).format('HH:mm')}
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+              <Text>
+                <FaIcon name="calendar" size={17} style={styles.icon} />{' '}
+                {moment(MOCK_EVENTS[0].date).format('DD/MM/YYYY')}{' '}
+              </Text>
+              <Text>
+                <FaIcon name="clock-o" size={17} style={styles.icon} />{' '}
+                {moment(MOCK_EVENTS[0].date).format('HH:mm')}
+              </Text>
+            </View>
+
+            <Text style={{ textAlign: 'center', marginTop: 5 }}>Faixa etária: 18 Anos</Text>
+
+            <Text style={{ textAlign: 'center' }}>
+              <Icon name="location-on" size={17} style={styles.icon} />
+              {MOCK_EVENTS[0].address}
             </Text>
           </View>
 
-          <Text style={{ textAlign: 'center', marginTop: 5 }}>Faixa etária: 18 Anos</Text>
-
-          <Text style={{ textAlign: 'center' }}>
-            <Icon name="location-on" size={17} style={styles.icon} />
-            {MOCK_EVENTS[0].address}
-          </Text>
-        </View>
-
-        {this.renderTicketArea()}
-      </ScrollView>
+          {this.renderTicketArea()}
+        </ScrollView>
+      </LinearGradient>
     );
   }
 }
