@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import { Text, View, StyleSheet, Image, TextInput } from 'react-native';
+import { Text, View, StyleSheet, Image, TextInput, AsyncStorage } from 'react-native';
 import {
   Content,
   Container,
@@ -25,6 +25,7 @@ import {
   Label,
   Toast,
   Spinner,
+  Button,
 } from 'native-base';
 import axios from 'axios';
 import { TextInputMask } from 'react-native-masked-text';
@@ -47,7 +48,26 @@ class OrderResume extends React.Component {
       cardImage: 'front_card.png',
       cardOwnerName: '',
       cardNumber: '',
+      isOrderFinished: false,
     };
+  }
+
+  async handleBuyTickets() {
+    // const orders = await AsyncStorage.getItem('orders');
+    // let newOrders;
+    // // if(orders){
+    // //   newOrders = JSON.parse(orders)
+    // // }
+    // if(!orders){
+    //   newOrders = {
+
+    //     this.state.tickets
+    //   }
+    //   await AsyncStorage.setItem()
+    // }
+    this.setState({
+      isOrderFinished: true,
+    });
   }
 
   handleChangeFieldData(field, value) {
@@ -150,6 +170,21 @@ class OrderResume extends React.Component {
           <Right>
             <Input placeholder="CCV" />
           </Right>
+        </Item>
+        <Item>
+          <Button
+            block
+            info
+            onPress={() => this.handleBuyTickets()}
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              margin: 30,
+            }}
+          >
+            <Text>Finalizar compra!</Text>
+          </Button>
         </Item>
       </Form>
     </View>
@@ -300,6 +335,26 @@ class OrderResume extends React.Component {
   );
 
   render() {
+    if (this.state.isOrderFinished) {
+      return (
+        <Container>
+          <Content>
+            <Text
+              style={{
+                fontSize: 30,
+                paddingBottom: 5,
+                marginBottom: 20,
+                marginLeft: 20,
+                marginRight: 20,
+                marginTop: 30,
+              }}
+            >
+              Parabéns! Seu pedido foi gerado com sucesso!
+            </Text>
+          </Content>
+        </Container>
+      );
+    }
     return (
       <Container>
         <Content>
