@@ -19,7 +19,7 @@ const Navbar = () => (
       )}
     </Left>
     <Body>
-      <Title>M.B. Events</Title>
+      <Title>MB Events</Title>
     </Body>
     <Right />
   </Header>

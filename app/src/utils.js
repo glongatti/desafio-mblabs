@@ -7,6 +7,7 @@ export const MOCK_EVENTS = [
   {
     id: 1,
     name: 'Dialog Flow',
+    category_id: 1,
     description:
       'Nesse workshop Neto Silva, o líder de Chatbot do PJBank. nos ensinará como criar uma aplicação utilizando o Dialog Flow do Google. O conteúdo abordado será a apresentação do DialogFlow e criar uma aplicação prática usando a própria IDE do serviço; Pre-requisito:      - Por se tratar de um workshop é necessário levar seu computador, sob sua responsabilidade.',
     age: 'Livre para todos os públicos',
@@ -30,6 +31,7 @@ export const MOCK_EVENTS = [
   {
     id: 2,
     name: 'Virtual Product Summit: The Online Product Management Conference',
+    category_id: 2,
     description:
       'On October 24, we will be presenting the first Virtual Product Summit, a Product School online conference dedicated to Product Management. Featuring six of the most prominent product minds from companies like Tinder, Amazon, and Airbnb, each talk will focus on the most trending insights in the product world.      This four-hour long conference will be available for livestream on Youtube, Facebook, and LinkedIn. To ensure that you don’t miss out on any of this valuable information, all slides will be available for download during the talks. Join us as we bring together the biggest online product community in the world to learn from those who are leading the charge in the industry.',
     age: '+16',
@@ -47,6 +49,7 @@ export const MOCK_EVENTS = [
   {
     id: 3,
     name: '#14 Agile Beer Campinas',
+    category_id: 1,
     description:
       'Essa edição será realizada na Programmers, que fica na Av. John Dalton, 301 - Edifício 3, conjunto 13A (Techno Park Campinas). Vamos compartilhar experiências e conhecimento sobre os métodos ágeis, expandir nosso network e ainda tomar uma cerveja juntos.',
     age: '+16',
@@ -64,6 +67,7 @@ export const MOCK_EVENTS = [
   {
     id: 4,
     name: '31º CocoaTalks Campinas',
+    category_id: 3,
     description:
       'Essa edição será realizada na Programmers, que fica na Av. John Dalton, 301 - Edifício 3, conjunto 13A (Techno Park Campinas). Vamos compartilhar experiências e conhecimento sobre os métodos ágeis, expandir nosso network e ainda tomar uma cerveja juntos.',
     age: '+16',

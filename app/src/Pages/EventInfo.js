@@ -5,7 +5,7 @@ import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-na
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
-// import { Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { MOCK_EVENTS } from './../utils';
@@ -80,7 +80,7 @@ export default class EventInfo extends Component {
     });
 
     if (isEmpty) Toast.show({ text: 'Selecione pelo menos 1 ingresso!' });
-    else Toast.show({ text: 'Redirect' });
+    else Actions.orderResume({ tickets: this.state.tickets });
   };
 
   renderEventInfoArea = () => (

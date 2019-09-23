@@ -22,6 +22,7 @@ import EventInfo from './src/Pages/EventInfo';
 import Login from './src/Pages/Login';
 import Register from './src/Pages/Register';
 import Sidebar from './src/Components/Sidebar';
+import OrderResume from './src/Pages/OrderResume';
 
 const styles = StyleSheet.create({
   navBar: {
@@ -60,6 +61,7 @@ const App = () => {
           </Drawer>
           <Scene key="eventsList" component={EventsList} />
           <Scene key="eventInfo" component={EventInfo} />
+          <Scene key="orderResume" component={OrderResume} />
         </Stack>
       </Router>
     </Root>

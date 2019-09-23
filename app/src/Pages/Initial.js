@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 const Initial = () => (
   <LinearGradient colors={['#0f0c29', '#302b63', '#24243e']} style={styles.container}>
     <View>
-      <Text style={styles.title}>M.B. Events</Text>
+      <Text style={styles.title}>MB Events</Text>
     </View>
     <View>
       <TouchableHighlight style={styles.button} onPress={() => Actions.home()}>
