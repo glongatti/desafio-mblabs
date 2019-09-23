@@ -103,12 +103,12 @@ export const categories = [
       'https://dpz4c7q921os3.cloudfront.net/images/block/d8d0045a1d081d1b4c9f336ec08ab71ee2ff10fb.jpeg',
   },
   {
-    id: 4,
+    id: 3,
     name: 'Meetups',
     image: 'https://www.themartec.com/insidelook/wp-content/uploads/Meetups-Sydney-Startups.jpg',
   },
   {
-    id: 5,
+    id: 4,
     name: 'Eventos online',
     image:
       'https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1463513356000/photosp/c5bce4d3-eb5d-4d6d-b9ce-71117b066187/stock-photo-business-technology-laptop-electronic-computer-corporate-editing-tutoring-users-c5bce4d3-eb5d-4d6d-b9ce-71117b066187.jpg',

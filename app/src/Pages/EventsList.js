@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -38,9 +40,9 @@ const EventsList = ({ category }) => (
       </View>
 
       <View style={styles.eventsList}>
-        {MOCK_EVENTS.map(event => (
-          <EventCard event={event} />
-        ))}
+        {MOCK_EVENTS.map((event) => {
+          if (event.category_id === category.id) return <EventCard event={event} />;
+        })}
       </View>
     </ScrollView>
   </Fragment>
