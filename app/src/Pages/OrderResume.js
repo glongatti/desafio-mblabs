@@ -29,8 +29,8 @@ import {
 } from 'native-base';
 import axios from 'axios';
 import { TextInputMask } from 'react-native-masked-text';
+import { Actions } from 'react-native-router-flux';
 
-const styles = StyleSheet.create({});
 
 class OrderResume extends React.Component {
   constructor(props) {
@@ -45,26 +45,30 @@ class OrderResume extends React.Component {
       complement: '',
       city: '',
       state: '',
-      cardImage: 'front_card.png',
       cardOwnerName: '',
       cardNumber: '',
       isOrderFinished: false,
+      expirationDate: '',
     };
   }
 
   async handleBuyTickets() {
-    // const orders = await AsyncStorage.getItem('orders');
-    // let newOrders;
-    // // if(orders){
-    // //   newOrders = JSON.parse(orders)
-    // // }
-    // if(!orders){
-    //   newOrders = {
+    const order = {
+      event: this.props.event,
+      tickets: this.props.tickets,
+    };
 
-    //     this.state.tickets
-    //   }
-    //   await AsyncStorage.setItem()
-    // }
+    const orders = JSON.parse(await AsyncStorage.getItem('orders'));
+
+    if (!orders) {
+      const newOrders = [];
+      newOrders.push(order);
+      await AsyncStorage.setItem('orders', JSON.stringify(newOrders));
+    } else {
+      orders.push(order);
+      await AsyncStorage.setItem('orders', JSON.stringify(orders));
+    }
+
     this.setState({
       isOrderFinished: true,
     });
@@ -157,18 +161,27 @@ class OrderResume extends React.Component {
           />
         </Item>
         <Item>
-          <Input
+          <TextInputMask
             placeholder="Número do cartão"
+            type="credit-card"
             value={this.state.cardNumber}
             onChangeText={text => this.handleChangeFieldData('cardNumber', text)}
           />
         </Item>
         <Item>
           <Left>
-            <Input placeholder="Data de expiração" />
+            <TextInputMask
+              placeholder="Data de expiração"
+              type="datetime"
+              options={{
+                format: 'MM/YY',
+              }}
+              value={this.state.expirationDate}
+              onChangeText={text => this.handleChangeFieldData('expirationDate', text)}
+            />
           </Left>
           <Right>
-            <Input placeholder="CCV" />
+            <Input placeholder="CCV" maxLength={3} />
           </Right>
         </Item>
         <Item>
@@ -347,10 +360,24 @@ class OrderResume extends React.Component {
                 marginLeft: 20,
                 marginRight: 20,
                 marginTop: 30,
+                textAlign: 'center',
               }}
             >
               Parabéns! Seu pedido foi gerado com sucesso!
             </Text>
+            <Button
+              block
+              info
+              onPress={() => Actions.userOrders()}
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                margin: 30,
+              }}
+            >
+              <Text>Meus Pedidos</Text>
+            </Button>
           </Content>
         </Container>
       );

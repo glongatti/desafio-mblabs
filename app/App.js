@@ -23,6 +23,7 @@ import Login from './src/Pages/Login';
 import Register from './src/Pages/Register';
 import Sidebar from './src/Components/Sidebar';
 import OrderResume from './src/Pages/OrderResume';
+import MyOrders from './src/Pages/Dashboard/MyOrders';
 
 const styles = StyleSheet.create({
   navBar: {
@@ -47,7 +48,7 @@ const App = () => {
     <Root>
       <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle}>
         <Stack key="root" navBar={Navbar}>
-          <Scene key="initial" component={Initial} hideNavBar />
+          <Scene key="initial" initial component={Initial} hideNavBar />
           <Scene key="login" component={Login} />
           <Scene key="register" component={Register} />
           <Drawer
@@ -62,6 +63,7 @@ const App = () => {
           <Scene key="eventsList" component={EventsList} />
           <Scene key="eventInfo" component={EventInfo} />
           <Scene key="orderResume" component={OrderResume} />
+          <Scene key="userOrders" component={MyOrders} />
         </Stack>
       </Router>
     </Root>

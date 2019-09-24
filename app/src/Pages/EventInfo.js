@@ -80,7 +80,7 @@ export default class EventInfo extends Component {
     });
 
     if (isEmpty) Toast.show({ text: 'Selecione pelo menos 1 ingresso!' });
-    else Actions.orderResume({ tickets: this.state.tickets });
+    else Actions.orderResume({ tickets: this.state.tickets, event: this.props.event });
   };
 
   renderEventInfoArea = () => (

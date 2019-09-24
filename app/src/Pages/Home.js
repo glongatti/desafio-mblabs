@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { Text, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, Dimensions, AsyncStorage } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import LinearGradient from 'react-native-linear-gradient';
 import axios from 'axios';
@@ -28,24 +28,9 @@ const styles = StyleSheet.create({
 });
 
 export default class Home extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      categories: [],
-    };
-  }
-
-  async componentDidMount() {
-    // const categorias = await this.getCategories();
-    axios
-      .get(`${appConfig.apiRoot}/categories`)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch(err => console.log(err.response));
-    // console.log('categori', categorias);
-  }
+  // async componentDidMount() {
+  //   // await AsyncStorage.removeItem('orders');
+  // }
 
   getCategories() {
     return axios.get(`${appConfig.apiRoot}/categories`);
