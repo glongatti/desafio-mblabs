@@ -58,7 +58,7 @@ class MyOrders extends React.Component {
     }
     return (
       <Container>
-        <Content>
+        <Content style={{ padding: 10 }}>
           <Card>
             <CardItem header bordered>
               <Text

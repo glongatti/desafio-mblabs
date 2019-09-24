@@ -21,14 +21,21 @@ class Login extends React.Component {
     };
   }
 
+  async componentDidMount() {
+    const user = await AsyncStorage.getItem('userData');
+    if (user) {
+      Actions.userOrders();
+    }
+  }
+
   handleChangeFieldData(field, value) {
     this.setState({
       [field]: value,
     });
   }
-
   async handleSubmitForm() {
     const { email, password } = this.state;
+    const { handleModal } = this.props;
     if (!email.trim() || !password.trim()) {
       Toast.show({
         text: 'Preencha todos os campos!',
@@ -36,7 +43,8 @@ class Login extends React.Component {
       });
     } else if (email === 'exemplo@teste.com' && password === '123456') {
       await AsyncStorage.setItem('userData', JSON.stringify({ email, password }));
-      Actions.userOrders();
+      if (handleModal) handleModal(false);
+      else Actions.userOrders();
     } else {
       Toast.show({
         text: 'E-mail ou senha incorreto!',

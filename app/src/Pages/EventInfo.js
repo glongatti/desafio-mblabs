@@ -1,7 +1,16 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React, { Component } from 'react';
 import { Button, Left, Right, Body, Card, CardItem, Toast } from 'native-base';
-import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableHighlight,
+  AsyncStorage,
+  Modal,
+  Alert,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FaIcon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
@@ -9,6 +18,7 @@ import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { MOCK_EVENTS } from './../utils';
+import Login from './Login';
 
 const styles = StyleSheet.create({
   container: {
@@ -49,6 +59,7 @@ export default class EventInfo extends Component {
     super(props);
     this.state = {
       tickets: [],
+      modalVisible: false,
     };
   }
   componentDidMount() {
@@ -58,6 +69,15 @@ export default class EventInfo extends Component {
       tickets: eventTickets,
     });
   }
+
+  handleModal = (isModalVisible) => {
+    this.setState(
+      {
+        modalVisible: isModalVisible,
+      },
+      () => this.goToCart(),
+    );
+  };
 
   toggleTickets = (action, index) => {
     const newTickets = this.state.tickets;
@@ -73,15 +93,37 @@ export default class EventInfo extends Component {
     });
   };
 
-  goToCart = () => {
+  goToCart = async () => {
     let isEmpty = true;
     this.state.tickets.forEach((ticket) => {
       if (ticket.amount > 0) isEmpty = false;
     });
 
+    const user = await AsyncStorage.getItem('userData');
     if (isEmpty) Toast.show({ text: 'Selecione pelo menos 1 ingresso!' });
+    else if (!user) this.handleModal(true);
     else Actions.orderResume({ tickets: this.state.tickets, event: this.props.event });
   };
+
+  renderLoginModal = () => (
+    <View style={{ marginTop: 22 }}>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={this.state.modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+        }}
+      >
+        <TouchableHighlight onPress={() => this.handleModal(false)}>
+          <Text>Fechar Modal</Text>
+        </TouchableHighlight>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Login handleModal={this.handleModal} />
+        </View>
+      </Modal>
+    </View>
+  );
 
   renderEventInfoArea = () => (
     <Card>
@@ -205,6 +247,8 @@ export default class EventInfo extends Component {
         <ScrollView style={styles.container}>
           {this.renderEventInfoArea()}
           {this.renderTicketArea()}
+
+          {this.renderLoginModal()}
         </ScrollView>
       </LinearGradient>
     );

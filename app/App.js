@@ -58,12 +58,12 @@ const App = () => {
             drawer
             hideNavBar
           >
-            <Scene key="home" initial component={Home} />
+            <Scene key="home" component={Home} />
+            <Scene key="userOrders" component={MyOrders} />
           </Drawer>
           <Scene key="eventsList" component={EventsList} />
           <Scene key="eventInfo" component={EventInfo} />
           <Scene key="orderResume" component={OrderResume} />
-          <Scene key="userOrders" component={MyOrders} />
         </Stack>
       </Router>
     </Root>

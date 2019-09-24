@@ -8,13 +8,13 @@ import Menu from 'react-native-vector-icons/Entypo';
 const Navbar = () => (
   <Header>
     <Left>
-      {Actions.currentScene !== '_home' ? (
-        <Button transparent onPress={() => Actions.pop()}>
-          <Icon name="left" size={25} color="#ffffff" />
-        </Button>
-      ) : (
+      {Actions.currentScene === '_userOrders' || Actions.currentScene === '_home' ? (
         <Button transparent onPress={() => Actions.drawerOpen()}>
           <Menu name="menu" size={25} color="#ffffff" />
+        </Button>
+      ) : (
+        <Button transparent onPress={() => Actions.pop()}>
+          <Icon name="left" size={25} color="#ffffff" />
         </Button>
       )}
     </Left>
