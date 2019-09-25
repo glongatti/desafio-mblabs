@@ -37,19 +37,13 @@ class Login extends React.Component {
     const { email, password } = this.state;
     const { handleModal } = this.props;
     if (!email.trim() || !password.trim()) {
-      Toast.show({
-        text: 'Preencha todos os campos!',
-        type: 'warning',
-      });
+      alert('Preencha todos os campos!');
     } else if (email === 'exemplo@teste.com' && password === '123456') {
       await AsyncStorage.setItem('userData', JSON.stringify({ email, password }));
       if (handleModal) handleModal(false);
       else Actions.userOrders();
     } else {
-      Toast.show({
-        text: 'E-mail ou senha incorreto!',
-        type: 'warning',
-      });
+      alert('E-mail ou senha incorreto!');
     }
   }
 

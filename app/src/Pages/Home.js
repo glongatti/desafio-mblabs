@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
 export default class Home extends React.Component {
   // async componentDidMount() {
-  //   // await AsyncStorage.removeItem('orders');
+  //   await AsyncStorage.removeItem('orders');
   // }
 
   getCategories() {

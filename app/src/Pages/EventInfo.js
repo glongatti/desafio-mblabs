@@ -86,7 +86,7 @@ export default class EventInfo extends Component {
       newTickets[index].amount += 1;
     } else if (action === 'remove') {
       if (newTickets[index].amount > 0) newTickets[index].amount -= 1;
-      else Toast.show({ text: 'Quantidade inválida' });
+      else alert('Quantidade inválida');
     }
     this.setState({
       tickets: newTickets,
@@ -100,7 +100,7 @@ export default class EventInfo extends Component {
     });
 
     const user = await AsyncStorage.getItem('userData');
-    if (isEmpty) Toast.show({ text: 'Selecione pelo menos 1 ingresso!' });
+    if (isEmpty) alert('Selecione pelo menos 1 ingresso!');
     else if (!user) this.handleModal(true);
     else Actions.orderResume({ tickets: this.state.tickets, event: this.props.event });
   };

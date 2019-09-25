@@ -31,7 +31,6 @@ import axios from 'axios';
 import { TextInputMask } from 'react-native-masked-text';
 import { Actions } from 'react-native-router-flux';
 
-
 class OrderResume extends React.Component {
   constructor(props) {
     super(props);
@@ -97,11 +96,7 @@ class OrderResume extends React.Component {
             isCepLoading: false,
           });
         })
-        .catch(() =>
-          Toast.show({
-            text: 'CEP Inválido!',
-            type: 'warning',
-          }));
+        .catch(() => alert('CEP Inválido!'));
     }
   };
 

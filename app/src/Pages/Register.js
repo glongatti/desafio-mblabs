@@ -131,10 +131,7 @@ class Register extends React.Component {
     }
 
     if (hasError) {
-      Toast.show({
-        text: errMsg,
-        type: 'warning',
-      });
+     alert(errMsg);
     } else {
       // Envia requisiçao
     }
