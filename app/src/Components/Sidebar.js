@@ -13,7 +13,6 @@ import { Text, AsyncStorage } from 'react-native';
 import { Left, Body, ListItem, Content, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-// import FaIcon from 'react-native-vector-icons/FontAwesome';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -77,7 +76,7 @@ class Sidebar extends React.Component {
         <ListItem icon onPress={() => Actions.login()}>
           <Left>
             <Button style={{ backgroundColor: '#FF9501' }}>
-              <Icon active name="user" />
+              <Icon active name="bars" />
             </Button>
           </Left>
           <Body>
@@ -87,7 +86,7 @@ class Sidebar extends React.Component {
         <ListItem icon onPress={() => Actions.home()}>
           <Left>
             <Button style={{ backgroundColor: '#FF9501' }}>
-              <Icon active name="user" />
+              <Icon active name="calendar-alt" />
             </Button>
           </Left>
           <Body>
@@ -97,7 +96,7 @@ class Sidebar extends React.Component {
         <ListItem icon onPress={() => this.handleLogout()}>
           <Left>
             <Button style={{ backgroundColor: '#FF9501' }}>
-              <Icon active name="user" />
+              <Icon name="arrow-left" />
             </Button>
           </Left>
           <Body>
